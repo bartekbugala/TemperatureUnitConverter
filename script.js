@@ -27,7 +27,7 @@ button.addEventListener('click', function () {
         } else if (userName === '') {
             userName = window.prompt('(Input: ' + typeof (userName) + ') ' + 'Empty field! What is your real name?' + triesString + i);
         } else if (!isNaN(userName)) {
-            userName = window.prompt('(Input: ' + typeof (userName) + 'consisting of a number) ' + 'A Number? Are you an alien? What is your real name?' + triesString + i);
+            userName = window.prompt('(Input: ' + typeof (userName) + ' consisting of a number) ' + 'A Number? Are you an alien? What is your real name?' + triesString + i);
         }
         i--;
     }
