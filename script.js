@@ -24,11 +24,6 @@ button.addEventListener('click', function () {
     }
     // declaration of iteration variable
     var i = 5;
-/*
-        // Checking if input is consisting of letters
-
-
-*/
 
     while ((!alphaExp.test(userName) || typeof userName !== 'string' || userName === '' || !isNaN(userName)) && i > 0) {
         // declaring const
@@ -46,6 +41,7 @@ button.addEventListener('click', function () {
         else if (!isNaN(userName)) {
             userName = window.prompt('(Input: ' + typeof (userName) + ' consisting of a number) ' + 'A Number? Are you an alien? What is your real name?' + triesString + i);
         }
+        // Checking if input has prohibited characters
         else if (!alphaExp.test(userName)) {
             userName = window.prompt('(Input: ' + typeof (userName) + ' containing non alphabetical characters) ' + 'Prohibited! No Injection hacks my Friend! What is your real name?' + triesString + i);
         }
