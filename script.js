@@ -13,11 +13,11 @@ var button = document.getElementById('greeter-button');
 var userName;
 
 // alphaExp const declaration
-const alphaExp = /^[a-zA-Z]+$/;
+const alphaExp = /^[a-zA-Z]|[ ]+$/;
 
 // adding listener (waiting for mouse click) to button 
 button.addEventListener('click', function () {
-    
+
     // Checking if the user name is set
     if (typeof userName !== 'string') {
         userName = window.prompt('What is your name?');
@@ -25,10 +25,10 @@ button.addEventListener('click', function () {
     // declaration of iteration variable
     var i = 5;
 
-    while ((!alphaExp.test(userName) || typeof userName !== 'string' || userName === '' || !isNaN(userName)) && i > 0) {
+    while (/[ ]+$/.test(userName) || (!alphaExp.test(userName) || typeof userName !== 'string' || userName === '' || !isNaN(userName)) && i > 0) {
         // declaring const
         const triesString = 'Tries left: ';
-        
+
         // Checking if input is not a string!
         if (typeof userName !== 'string') {
             userName = window.prompt('(Input: ' + typeof (userName) + ') ' + 'No Input! What is your real name?' + triesString + i);
@@ -38,8 +38,12 @@ button.addEventListener('click', function () {
             userName = window.prompt('(Input: ' + typeof (userName) + ') ' + 'Empty field! What is your real name?' + triesString + i);
         }
         // Checking if input is a number (not isNaN)
-        else if (!isNaN(userName)) {
+        else if (!isNaN(userName) && !/[ ]+$/.test(userName)) {
             userName = window.prompt('(Input: ' + typeof (userName) + ' consisting of a number) ' + 'A Number? Are you an alien? What is your real name?' + triesString + i);
+        }
+        // Checking if input has prohibited characters
+        else if (/[ ]+$/.test(userName)) {
+            userName = window.prompt('(Input: ' + typeof (userName) + ' containing spaces) ' + 'Prohibited! No Injection hacks my Friend! What is your real name?' + triesString + i);
         }
         // Checking if input has prohibited characters
         else if (!alphaExp.test(userName)) {
@@ -49,7 +53,7 @@ button.addEventListener('click', function () {
     }
 
     // If the iteration finished and tehre is still no input a value is assigned to userName variable
-    if ((!alphaExp.test(userName) || typeof userName !== 'string' || userName === '' || !isNaN(userName)) && i === 0) {
+    if ((/[ ]+$/.test(userName) || !alphaExp.test(userName) || typeof userName !== 'string' || userName === '' || !isNaN(userName)) && i === 0) {
         userName = 'Stubborn Individual';
     }
 
