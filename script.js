@@ -22,28 +22,29 @@ var tempF;
 
 // regex const declarations
 const alphaExp = /^[a-zA-Z]|[ ]+$/;
-const numExp = /^[0-9]+$/;
+const numExp = /^[-0-9]+$/;
 
 // functions
 
 // convert celsius to Fahrenheit
-function celsiusToFahrenheit(tempC){
-    var tempF = (tempC * 1.8)+32;
+function celsiusToFahrenheit(tempC) {
+    var tempF = (tempC * 1.8) + 32;
     return round(tempF);
 }
 // convert Fahrenheit to Celsius
-function fahrenheitToCelsius(tempF){
-    var tempC = (tempF - 32)/1.8;
+function fahrenheitToCelsius(tempF) {
+    var tempC = (tempF - 32) / 1.8;
     return round(tempC);
-} 
+}
 // round given decimal paces (default value is 2)
-function round(num, decimal=2){
+function round(num, decimal = 2) {
     var multiplier = Math.pow(10, decimal);
     return Math.round(num * multiplier) / multiplier;
 }
-function isSetUserName(){
+
+function isSetUserName() {
     var userName2
-    userName == undefined? userName2 = 'Mr Anonymous': userName2 = userName;
+    userName == undefined ? userName2 = 'Mr Anonymous' : userName2 = userName;
     return userName2;
 }
 
@@ -75,7 +76,7 @@ button.addEventListener('click', function () {
         else if (!isNaN(userName) && !/[ ]+$/.test(userName)) {
             userName = window.prompt('(Input: ' + typeof (userName) + ' consisting of a number) ' + 'A Number? Are you an alien? What is your real name?' + triesString + i);
         }
-        // Checking if input has prohibited characters
+        // Checking if input has spaces
         else if (/[ ]+$/.test(userName)) {
             userName = window.prompt('(Input: ' + typeof (userName) + ' containing spaces) ' + 'Prohibited! No Injection hacks my Friend! What is your real name?' + triesString + i);
         }
@@ -95,26 +96,38 @@ button.addEventListener('click', function () {
     output.innerHTML = 'Hello ' + userName + '!' + '<br><br>' + output.innerHTML;
 });
 
-
 // @tempC
 buttonTempToF.addEventListener('click', function () {
 
     // prompting for input @tempC
     tempC = window.prompt('Enter Temperature in Celsius ' + isSetUserName());
-// declaration of iteration variable
-var i = 5;
+    // declaration of iteration variable
+    var i = 5;
 
-while (isNaN(tempC) && i > 0) {
-      
-    // Checking if input is a number (not isNaN)
-    if (isNaN(tempC) && !/[ ]+$/.test(tempC)) {
-        tempC = window.prompt('(Input: ' + typeof (tempC) + ' not a number) ' + isSetUserName() +', please enter valid number');
+    while (tempC === null || (isNaN(tempC) || tempC === '' || /[ ]+$/.test(tempC)) && i > 0) {
+
+        if (tempC === null) {
+            break;
+        }
+        else if (tempC === '') {
+            tempC = window.prompt('(Input: ' + typeof (tempC) + ') ' + 'Empty field! Please enter a number');
+        }
+        // Checking if input is a number (not isNaN)
+        else if (isNaN(tempC)) {
+            tempC = window.prompt('(Input: ' + typeof (tempC) + ' not a number) ' + isSetUserName() + ', please enter valid number');
+        }
+        // Checking if input has spaces
+        else if (/[ ]+$/.test(tempC)) {
+            tempC = window.prompt('(Input: ' + typeof (tempC) + ' containing spaces) ' + 'Prohibited! No Injection hacks my Friend! Enter a number!');
+        }
+
+        i--;
     }
-    i--;
-}
 
-// Display Message With user name @userName
-outputTempToF.innerHTML = 'The given temperature in Fahrenheit: ' + celsiusToFahrenheit(tempC) + '!' + '<br><br>' + outputTempToF.innerHTML;
+    // Display Message With @tempC
+    if (numExp.test(tempC)) {
+    outputTempToF.innerHTML = 'The given temperature in Fahrenheit: ' + celsiusToFahrenheit(tempC) + '!' + '<br><br>' + outputTempToF.innerHTML;
+    }
 });
 
 // @tempF
@@ -122,18 +135,31 @@ buttonTempToC.addEventListener('click', function () {
 
     // prompting for input @tempC
     tempF = window.prompt('Enter Temperature in Fahrenheit ' + isSetUserName());
-// declaration of iteration variable
-var i = 5;
+    // declaration of iteration variable
+    var i = 5;
 
-while (isNaN(tempF) && i > 0) {
-      
-    // Checking if input is a number (not isNaN)
-    if (isNaN(tempF) && !/[ ]+$/.test(tempF)) {
-        tempF = window.prompt('(Input: ' + typeof (tempF) + ' not a number) ' + isSetUserName() +', please enter valid number');
+    while (tempF === null || (isNaN(tempF) || tempF === '' || /[ ]+$/.test(tempF)) && i > 0) {
+
+        if (tempF === null) {
+            break;
+        }
+        else if (tempF === '') {
+            tempF = window.prompt('(Input: ' + typeof (tempF) + ') ' + 'Empty field! Please enter a number');
+        }
+        // Checking if input is a number (not isNaN)
+        else if (isNaN(tempF)) {
+            tempC = window.prompt('(Input: ' + typeof (tempF) + ' not a number) ' + isSetUserName() + ', please enter valid number');
+        }
+        // Checking if input has spaces
+        else if (/[ ]+$/.test(tempF)) {
+            tempF = window.prompt('(Input: ' + typeof (tempF) + ' containing spaces) ' + 'Prohibited! No Injection hacks my Friend! Enter a number!');
+        }
+
+        i--;
     }
-    i--;
-}
 
-// Display Message With user name @userName
-outputTempToC.innerHTML = 'The given temperature in Fahrenheit: ' + fahrenheitToCelsius(tempF) + '!' + '<br><br>' + outputTempToC.innerHTML;
+    // Display Message With @tempF
+    if (numExp.test(tempF)) {
+    outputTempToC.innerHTML = 'The given temperature in Fahrenheit: ' + fahrenheitToCelsius(tempF) + '!' + '<br><br>' + outputTempToC.innerHTML;
+    }
 });
