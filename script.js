@@ -137,13 +137,13 @@ buttonTempToF.addEventListener('click', function () {
     // declaration of iteration variable
     var i = 5;
 
-    while (tempC === null || (isNaN(tempC) || tempC === '' || /[ ]+$/.test(tempC)) && i > 0) {
+    while ((isNaN(tempC) || tempC === '' || /[ ]+$/.test(tempC)) && i > 0) {
 
         if (tempC === null) {
             break;
         }
         else if (tempC === '') {
-            tempC = window.prompt('(Input: ' + typeof (tempC) + ') ' + 'Empty field! Please enter a number');
+            tempC = window.prompt('(Input: ' + typeof (tempC) + ') ' + 'Empty field! Please enter a number' + isSetUserName());
         }
         // Checking if input is a number (not isNaN)
         else if (isNaN(tempC)) {
@@ -151,9 +151,8 @@ buttonTempToF.addEventListener('click', function () {
         }
         // Checking if input has spaces
         else if (/[ ]+$/.test(tempC)) {
-            tempC = window.prompt('(Input: ' + typeof (tempC) + ' containing spaces) ' + 'Prohibited! No Injection hacks my Friend! Enter a number!');
+            tempC = window.prompt('(Input: ' + typeof (tempC) + ' containing spaces) ' + 'Prohibited! No Injection hacks ' + isSetUserName() + '! Enter a number!');
         }
-
         i--;
     }
 
@@ -171,13 +170,13 @@ buttonTempToC.addEventListener('click', function () {
     // declaration of iteration variable
     var i = 5;
 
-    while (tempF === null || (isNaN(tempF) || tempF === '' || /[ ]+$/.test(tempF)) && i > 0) {
+    while ((isNaN(tempF) || tempF === '' || /[ ]+$/.test(tempF)) && i > 0) {
 
         if (tempF === null) {
             break;
         }
         else if (tempF === '') {
-            tempF = window.prompt('(Input: ' + typeof (tempF) + ') ' + 'Empty field! Please enter a number');
+            tempF = window.prompt('(Input: ' + typeof (tempF) + ') ' + 'Empty field! Please enter a number'+ isSetUserName());
         }
         // Checking if input is a number (not isNaN)
         else if (isNaN(tempF)) {
@@ -185,7 +184,7 @@ buttonTempToC.addEventListener('click', function () {
         }
         // Checking if input has spaces
         else if (/[ ]+$/.test(tempF)) {
-            tempF = window.prompt('(Input: ' + typeof (tempF) + ' containing spaces) ' + 'Prohibited! No Injection hacks my Friend! Enter a number!');
+            tempF = window.prompt('(Input: ' + typeof (tempF) + ' containing spaces) ' + 'Prohibited! No Injection hacks '+ isSetUserName() + 'Enter a number!');
         }
         i--;
     }
