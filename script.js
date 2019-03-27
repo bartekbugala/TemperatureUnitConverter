@@ -49,7 +49,7 @@ button.addEventListener('click', function () {
     }
 
     // If the iteration finished and tehre is still no input a value is assigned to userName variable
-    if ((typeof userName !== 'string' || userName === '' || !isNaN(userName)) && i === 0) {
+    if ((!alphaExp.test(userName) || typeof userName !== 'string' || userName === '' || !isNaN(userName)) && i === 0) {
         userName = 'Stubborn Individual';
     }
 
