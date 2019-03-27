@@ -49,6 +49,9 @@ section {
   border: 6px solid orange;
   border-radius: 20px;
   padding: 10px; }
+  section h2 {
+    margin: 20px auto;
+    text-transform: uppercase; }
 
 button {
   display: inline-block;
