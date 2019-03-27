@@ -42,11 +42,44 @@ function round(num, decimal = 2) {
     return Math.round(num * multiplier) / multiplier;
 }
 
+// function to check if user is set if not display default name
 function isSetUserName() {
     var userName2
     userName == undefined ? userName2 = 'Mr Anonymous' : userName2 = userName;
     return userName2;
 }
+
+function tempMessage(tempC) {
+    var msg;
+    if (tempC <= 0){
+     msg = 'Water freezes, You should wear winter clothing!';
+    }
+    else if ( tempC > 0 && tempC < 10){
+     msg = 'Its cold, wear a hat!';
+    }
+    else if ( tempC >= 10 && tempC < 18){
+     msg = 'You can wear a coat! It is getting warmer!';
+    }
+    else if ( tempC >= 18 && tempC <= 28){
+     msg =  'It is definately summer, or you are in your apartament';
+    }
+    else if ( tempC > 28 && tempC < 100){
+     msg =  'I\'s getting hot in here! THE ROOF IS ON FIRE';
+    }
+    else if ( tempC >= 100 && tempC < 525){
+     msg =   'Water is boiling or evaporates. You are dead or wear a firefighter suit!';
+    }
+    else if ( tempC >= 525 && tempC < 5505){
+     msg =  'Black hole sun won\'t you come!';
+    }
+    else if (tempC >= 5505){
+     msg =  'Most probably you can\'t recieve this message';
+    }
+    return msg;   
+ }
+ 
+
+console.log(tempMessage(20));
 
 // adding listeners (waiting for mouse click) to buttons
 
@@ -126,7 +159,7 @@ buttonTempToF.addEventListener('click', function () {
 
     // Display Message With @tempC
     if (numExp.test(tempC)) {
-    outputTempToF.innerHTML = 'The given temperature in Fahrenheit: ' + celsiusToFahrenheit(tempC) + '!' + '<br><br>' + outputTempToF.innerHTML;
+    outputTempToF.innerHTML = 'The given temperature in Fahrenheit: ' + celsiusToFahrenheit(tempC) + '!' + '<br><br>' + tempMessage(tempC) + '<br><br>' + outputTempToF.innerHTML;
     }
 });
 
@@ -154,12 +187,11 @@ buttonTempToC.addEventListener('click', function () {
         else if (/[ ]+$/.test(tempF)) {
             tempF = window.prompt('(Input: ' + typeof (tempF) + ' containing spaces) ' + 'Prohibited! No Injection hacks my Friend! Enter a number!');
         }
-
         i--;
     }
 
     // Display Message With @tempF
     if (numExp.test(tempF)) {
-    outputTempToC.innerHTML = 'The given temperature in Fahrenheit: ' + fahrenheitToCelsius(tempF) + '!' + '<br><br>' + outputTempToC.innerHTML;
+    outputTempToC.innerHTML = 'The given temperature in Fahrenheit: ' + fahrenheitToCelsius(tempF) + '!' + '<br><br>' + tempMessage(fahrenheitToCelsius(tempF)) + '<br><br>' + outputTempToC.innerHTML;
     }
 });
