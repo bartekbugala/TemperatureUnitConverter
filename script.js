@@ -77,9 +77,6 @@ function tempMessage(tempC) {
     }
     return msg;   
  }
- 
-
-console.log(tempMessage(20));
 
 // adding listeners (waiting for mouse click) to buttons
 
