@@ -1,21 +1,55 @@
 'use strict';
 
-// reference to div with greeter-output id
+// get divs by ID
 var output = document.getElementById('greeter-output');
+var outputTempToF = document.getElementById('temp-f-output');
+var outputTempToC = document.getElementById('temp-c-output');
 
-// adding content to div
+// add content to divs
 output.innerHTML = 'Click the button! I want to say hello!' + '<br><br>' + output.innerHTML;
+outputTempToF.innerHTML = 'Click the button! If you want to convert °C to °F!' + '<br><br>' + outputTempToF.innerHTML;
+outputTempToC.innerHTML = 'Click the button! If you want to convert °F to °C!' + '<br><br>' + outputTempToC.innerHTML;
 
-// targeting button with greeter-button id
+// get buttons by id
 var button = document.getElementById('greeter-button');
+var buttonTempToF = document.getElementById('temp-f-button');
+var buttonTempToC = document.getElementById('temp-c-button');
 
-// userName variable declaration
+// declare input variables
 var userName;
+var tempC;
+var tempF;
 
-// alphaExp const declaration
+// regex const declarations
 const alphaExp = /^[a-zA-Z]|[ ]+$/;
+const numExp = /^[0-9]+$/;
 
-// adding listener (waiting for mouse click) to button 
+// functions
+
+// convert celsius to Fahrenheit
+function celsiusToFahrenheit(tempC){
+    var tempF = (tempC * 1.8)+32;
+    return round(tempF);
+}
+// convert Fahrenheit to Celsius
+function fahrenheitToCelsius(tempF){
+    var tempC = (tempF - 32)/1.8;
+    return round(tempC);
+} 
+// round given decimal paces (default value is 2)
+function round(num, decimal=2){
+    var multiplier = Math.pow(10, decimal);
+    return Math.round(num * multiplier) / multiplier;
+}
+function isSetUserName(){
+    var userName2
+    userName == undefined? userName2 = 'Mr Anonymous': userName2 = userName;
+    return userName2;
+}
+
+// adding listeners (waiting for mouse click) to buttons
+
+// @userName
 button.addEventListener('click', function () {
 
     // Checking if the user name is set
@@ -59,4 +93,47 @@ button.addEventListener('click', function () {
 
     // Display Message With user name @userName
     output.innerHTML = 'Hello ' + userName + '!' + '<br><br>' + output.innerHTML;
+});
+
+
+// @tempC
+buttonTempToF.addEventListener('click', function () {
+
+    // prompting for input @tempC
+    tempC = window.prompt('Enter Temperature in Celsius ' + isSetUserName());
+// declaration of iteration variable
+var i = 5;
+
+while (isNaN(tempC) && i > 0) {
+      
+    // Checking if input is a number (not isNaN)
+    if (isNaN(tempC) && !/[ ]+$/.test(tempC)) {
+        tempC = window.prompt('(Input: ' + typeof (tempC) + ' not a number) ' + isSetUserName() +', please enter valid number');
+    }
+    i--;
+}
+
+// Display Message With user name @userName
+outputTempToF.innerHTML = 'The given temperature in Fahrenheit: ' + celsiusToFahrenheit(tempC) + '!' + '<br><br>' + outputTempToF.innerHTML;
+});
+
+// @tempF
+buttonTempToC.addEventListener('click', function () {
+
+    // prompting for input @tempC
+    tempF = window.prompt('Enter Temperature in Fahrenheit ' + isSetUserName());
+// declaration of iteration variable
+var i = 5;
+
+while (isNaN(tempF) && i > 0) {
+      
+    // Checking if input is a number (not isNaN)
+    if (isNaN(tempF) && !/[ ]+$/.test(tempF)) {
+        tempF = window.prompt('(Input: ' + typeof (tempF) + ' not a number) ' + isSetUserName() +', please enter valid number');
+    }
+    i--;
+}
+
+// Display Message With user name @userName
+outputTempToC.innerHTML = 'The given temperature in Fahrenheit: ' + fahrenheitToCelsius(tempF) + '!' + '<br><br>' + outputTempToC.innerHTML;
 });
