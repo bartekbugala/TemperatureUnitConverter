@@ -21,6 +21,11 @@ const numExp = /^[-0-9]+$/;
 
 // functions
 
+// round given decimal paces (default value is 2)
+function round(num, decimal = 2) {
+    let multiplier = Math.pow(10, decimal);
+    return Math.round(num * multiplier) / multiplier;
+}
 // convert celsius to Fahrenheit
 function celsiusToFahrenheit(tempC) {
     let tempF = (tempC * 1.8) + 32;
@@ -31,20 +36,21 @@ function fahrenheitToCelsius(tempF) {
     let tempC = (tempF - 32) / 1.8;
     return round(tempC);
 }
-// round given decimal paces (default value is 2)
-function round(num, decimal = 2) {
-    let multiplier = Math.pow(10, decimal);
-    return Math.round(num * multiplier) / multiplier;
-}
 
 // TO DO
-function returnIfNumber(number){
-    if (isNaN(number)) {
-        alert('Not a Number! Please enter correct number.');
-        return 'wrong input'
+function returnIfNumber(input){
+    if (isNaN(input)) {
+        return 'wrong input';
     } 
-    return number    
+    return input    
 };
+
+function alertIfNotNumber(input){
+    if (isNaN(input)) {
+        alert('Wrong input, please enter a number.');
+    }
+    return input
+}
 
 function tempMessage(tempC) {
     let msg;
@@ -79,12 +85,12 @@ function tempMessage(tempC) {
 
 // @tempC
 buttonTempToF.addEventListener('click', function () {
-
+    alertIfNotNumber(returnIfNumber(15));
     // prompting for input @tempC
-    tempC = returnIfNumber(window.prompt('Enter Temperature in Celsius degrees'));
+    tempC = alertIfNotNumber(returnIfNumber(window.prompt('Enter Temperature in Celsius degrees')));
 
     // Display Message With @tempC
-    outputTempToF.innerHTML = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + celsiusToFahrenheit(tempC) + '</span><br><br>' + tempMessage(tempC) + '<br><br>';
+    outputTempToF.innerHTML = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + returnIfNumber(celsiusToFahrenheit(tempC)) + '</span><br><br>' + tempMessage(tempC) + '<br><br>';
 });
 
 // @tempF
