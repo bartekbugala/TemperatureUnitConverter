@@ -33,7 +33,7 @@ function fahrenheitToCelsius(tempF) {
 
 // checks if number, returns number or message (default value - 'wrong input')
 function returnIfNumber(input, value = "wrong input"){
-    if (isNaN(input)) {
+    if (isNaN(input)||input === "") {
         return value;
     } 
     return input    
@@ -82,8 +82,8 @@ function returnTempMsg(tempC) {
 
 // @tempC - Button listener - conversion to Fahrenheit
 buttonTempToF.addEventListener('click', function () {
-    // prompt window
-    let promptTempToF = window.prompt('Enter Temperature in Celsius degrees');
+    // prompt window (second value for IE prevent 'undefined')
+    let promptTempToF = window.prompt('Enter Temperature in Celsius degrees','');
     // check input of prompt window
     let tempC = alertIfNotNumber(returnIfNumber(promptTempToF));
     // Temperature in F after conversion
@@ -96,8 +96,8 @@ buttonTempToF.addEventListener('click', function () {
 
 // @tempF - Button listener - conversion to Celsius
 buttonTempToC.addEventListener('click', function () {
-    // prompt window
-    let promptTempToC = window.prompt('Enter Temperature in Celsius degrees');
+    // prompt window (second value for IE prevent 'undefined')
+    let promptTempToC = window.prompt('Enter Temperature in Celsius degrees','');
     // check input of prompt window and assign to tempF variable
     let tempF = alertIfNotNumber(returnIfNumber(promptTempToC));
     // Temperature in F after conversion
