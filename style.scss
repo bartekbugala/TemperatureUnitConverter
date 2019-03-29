@@ -94,59 +94,50 @@ section {
         margin: 20px auto;
         text-transform: uppercase;
     }
-}
-
-// buttons
-button {
-    display: inline-block;
-    color: $color3;
-    padding: 11px 50px;
-    max-width: 100%;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    border-radius: 4px;
-    transition: color .3s, background-color .3s;
-    cursor: pointer;
-    outline: 0 !important;
-    text-decoration: none;
-    touch-action: manipulation;
-    user-select: none;
-}
-
-#greeter-button {
-    background-color: $color1;
-    border: 2px solid $color1;
-    &:hover,
-    &:active {
-        color: $color1;
-        background-color: $color3;
+    div {
+        button {
+            display: inline-block;
+            color: $color3;
+            padding: 11px 50px;
+            max-width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            border-radius: 4px;
+            transition: color .3s, background-color .3s;
+            cursor: pointer;
+            outline: 0 !important;
+            text-decoration: none;
+            touch-action: manipulation;
+            user-select: none;    
+            }
+            #temp-to-f-button {
+                background-color: $color2;
+                border: 2px solid $color2;
+                &:hover,
+                &:active {
+                    color: $color2;
+                    background-color: $color3;
+                }
+            }           
+            #temp-to-c-button {
+                text-align: center;
+                background-color: $color4;
+                border: 2px solid $color4;
+                &:hover,
+                &:active {
+                    color: $color4;
+                    background-color: $color3;
+                }
+            }
+            [id$="output"] {
+                span {
+                color: red;
+            }
+        }
     }
 }
-
-#temp-f-button {
-    background-color: $color2;
-    border: 2px solid $color2;
-    &:hover,
-    &:active {
-        color: $color2;
-        background-color: $color3;
-    }
-}
-
-#temp-c-button {
-    text-align: center;
-    background-color: $color4;
-    border: 2px solid $color4;
-    &:hover,
-    &:active {
-        color: $color4;
-        background-color: $color3;
-    }
-}
-
-
 
 /*# sourceMappingURL=style.css.map */

@@ -1,18 +1,18 @@
 'use strict';
 
 // get divs by ID
-let outputTempToF = document.getElementById('temp-f-output');
-let outputTempToC = document.getElementById('temp-c-output');
+let outputTempToF = document.getElementById('temp-to-f-output');
+let outputTempToC = document.getElementById('temp-to-c-output');
 
 // add content to divs
-outputTempToF.innerHTML = 'Click the button! If you want to convert °C to °F!' + '<br><br>' + outputTempToF.innerHTML;
-outputTempToC.innerHTML = 'Click the button! If you want to convert °F to °C!' + '<br><br>' + outputTempToC.innerHTML;
+outputTempToF.innerHTML = 'Click the button! If you want to convert °C to °F!' + '<br><br>';
+outputTempToC.innerHTML = 'Click the button! If you want to convert °F to °C!' + '<br><br>';
 
 // get buttons by id
-let buttonTempToF = document.getElementById('temp-f-button');
-let buttonTempToC = document.getElementById('temp-c-button');
+let buttonTempToF = document.getElementById('temp-to-f-button');
+let buttonTempToC = document.getElementById('temp-to-c-button');
 
-// declare input letiables
+// declare input variables
 let tempC;
 let tempF;
 
@@ -36,6 +36,15 @@ function round(num, decimal = 2) {
     let multiplier = Math.pow(10, decimal);
     return Math.round(num * multiplier) / multiplier;
 }
+
+// TO DO
+function returnIfNumber(number){
+    if (isNaN(number)) {
+        alert('Not a Number! Please enter correct number.');
+        return 'wrong input'
+    } 
+    return number    
+};
 
 function tempMessage(tempC) {
     let msg;
@@ -72,64 +81,20 @@ function tempMessage(tempC) {
 buttonTempToF.addEventListener('click', function () {
 
     // prompting for input @tempC
-    tempC = window.prompt('Enter Temperature in Celsius ' + isSetUserName());
-    // declaration of iteration letiable
-    let i = 5;
-
-    while ((isNaN(tempC) || tempC === '' || /[ ]+$/.test(tempC)) && i > 0) {
-
-        if (tempC === null) {
-            break;
-        }
-        else if (tempC === '') {
-            tempC = window.prompt('(Input: ' + typeof (tempC) + ') ' + 'Empty field! Please enter a number' + isSetUserName());
-        }
-        // Checking if input is a number (not isNaN)
-        else if (isNaN(tempC)) {
-            tempC = window.prompt('(Input: ' + typeof (tempC) + ' not a number) ' + isSetUserName() + ', please enter valid number');
-        }
-        // Checking if input has spaces
-        else if (/[ ]+$/.test(tempC)) {
-            tempC = window.prompt('(Input: ' + typeof (tempC) + ' containing spaces) ' + 'Prohibited! No Injection hacks ' + isSetUserName() + '! Enter a number!');
-        }
-        i--;
-    }
+    tempC = returnIfNumber(window.prompt('Enter Temperature in Celsius degrees'));
 
     // Display Message With @tempC
-    if (numExp.test(tempC)) {
-    outputTempToF.innerHTML = 'The given temperature in Fahrenheit: ' + celsiusToFahrenheit(tempC) + '!' + '<br><br>' + tempMessage(tempC) + '<br><br>' + outputTempToF.innerHTML;
-    }
+    outputTempToF.innerHTML = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + celsiusToFahrenheit(tempC) + '</span><br><br>' + tempMessage(tempC) + '<br><br>';
 });
 
 // @tempF
 buttonTempToC.addEventListener('click', function () {
 
     // prompting for input @tempC
-    tempF = window.prompt('Enter Temperature in Fahrenheit ' + isSetUserName());
-    // declaration of iteration letiable
-    let i = 5;
-
-    while ((isNaN(tempF) || tempF === '' || /[ ]+$/.test(tempF)) && i > 0) {
-
-        if (tempF === null) {
-            break;
-        }
-        else if (tempF === '') {
-            tempF = window.prompt('(Input: ' + typeof (tempF) + ') ' + 'Empty field! Please enter a number'+ isSetUserName());
-        }
-        // Checking if input is a number (not isNaN)
-        else if (isNaN(tempF)) {
-            tempC = window.prompt('(Input: ' + typeof (tempF) + ' not a number) ' + isSetUserName() + ', please enter valid number');
-        }
-        // Checking if input has spaces
-        else if (/[ ]+$/.test(tempF)) {
-            tempF = window.prompt('(Input: ' + typeof (tempF) + ' containing spaces) ' + 'Prohibited! No Injection hacks '+ isSetUserName() + 'Enter a number!');
-        }
-        i--;
-    }
+    tempF = window.prompt('Enter Temperature in Fahrenheit degrees');
+    // declaration of iteration variable
 
     // Display Message With @tempF
-    if (numExp.test(tempF)) {
-    outputTempToC.innerHTML = 'The given temperature in Fahrenheit: ' + fahrenheitToCelsius(tempF) + '!' + '<br><br>' + tempMessage(fahrenheitToCelsius(tempF)) + '<br><br>' + outputTempToC.innerHTML;
-    }
+   
+    outputTempToC.innerHTML = 'The given temperature in Celsius degrees: ' + fahrenheitToCelsius(tempF) + '!' + '<br><br>' + tempMessage(fahrenheitToCelsius(tempF)) + '<br><br>';
 });
