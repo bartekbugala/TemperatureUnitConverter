@@ -53,6 +53,7 @@ function alertIfNotNumber(input){
 }
 
 function tempMessage(tempC) {
+
     let msg;
     if (tempC <= 0){
      msg = 'Water freezes, You should wear winter clothing!';
@@ -85,7 +86,7 @@ function tempMessage(tempC) {
 
 // @tempC
 buttonTempToF.addEventListener('click', function () {
-    alertIfNotNumber(returnIfNumber(15));
+
     // prompting for input @tempC
     tempC = alertIfNotNumber(returnIfNumber(window.prompt('Enter Temperature in Celsius degrees')));
 
