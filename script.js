@@ -12,16 +12,10 @@ outputTempToC.innerHTML = 'Click the button! If you want to convert °F to °C!'
 let buttonTempToF = document.getElementById('temp-to-f-button');
 let buttonTempToC = document.getElementById('temp-to-c-button');
 
-// declare input variables
-let tempC;
-let tempF;
-
 // regex const declarations
 const numExp = /^[-0-9]+$/;
 
-// functions
-
-// round given decimal paces (default value is 2)
+// round given decimal places (if not set default value is 2)
 function round(num, decimal = 2) {
     let multiplier = Math.pow(10, decimal);
     return Math.round(num * multiplier) / multiplier;
@@ -37,10 +31,10 @@ function fahrenheitToCelsius(tempF) {
     return round(tempC);
 }
 
-// TO DO
-function returnIfNumber(input){
+// checks if number, returns number or message (default value - 'wrong input')
+function returnIfNumber(input, value = "wrong input"){
     if (isNaN(input)) {
-        return 'wrong input';
+        return value;
     } 
     return input    
 };
@@ -52,7 +46,8 @@ function alertIfNotNumber(input){
     return input
 }
 
-function tempMessage(tempC) {
+// Returns message accoding to degrees C (@tempC) 
+function returnTempMsg(tempC) {
 
     let msg;
     if (tempC <= 0){
@@ -79,29 +74,36 @@ function tempMessage(tempC) {
     else if (tempC >= 5505){
      msg =  'Most probably you can\'t recieve this message';
     }
+    else (
+        msg = 'No message.'
+    )
     return msg;   
  }
 
-// adding listeners (waiting for mouse click) to buttons
-
-// @tempC
+// @tempC - Button listener - conversion to Fahrenheit
 buttonTempToF.addEventListener('click', function () {
-
-    // prompting for input @tempC
-    tempC = alertIfNotNumber(returnIfNumber(window.prompt('Enter Temperature in Celsius degrees')));
-
+    // prompt window
+    let promptTempToF = window.prompt('Enter Temperature in Celsius degrees');
+    // check input of prompt window
+    let tempC = alertIfNotNumber(returnIfNumber(promptTempToF));
+    // Temperature in F after conversion
+    let convertedToTempF = returnIfNumber(celsiusToFahrenheit(tempC));
+    // Message according to temperature
+    let tempMsgF = returnTempMsg(tempC);
     // Display Message With @tempC
-    outputTempToF.innerHTML = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + returnIfNumber(celsiusToFahrenheit(tempC)) + '</span><br><br>' + tempMessage(tempC) + '<br><br>';
+    outputTempToF.innerHTML = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + convertedToTempF + '</span><br><br>' + tempMsgF + '<br><br>';
 });
 
-// @tempF
+// @tempF - Button listener - conversion to Celsius
 buttonTempToC.addEventListener('click', function () {
-
-    // prompting for input @tempC
-    tempF = window.prompt('Enter Temperature in Fahrenheit degrees');
-    // declaration of iteration variable
-
+    // prompt window
+    let promptTempToC = window.prompt('Enter Temperature in Celsius degrees');
+    // check input of prompt window and assign to tempF variable
+    let tempF = alertIfNotNumber(returnIfNumber(promptTempToC));
+    // Temperature in F after conversion
+    let convertedToTempC = returnIfNumber(fahrenheitToCelsius(tempF));
+    // Message according to temperature
+    let tempMsgC = returnTempMsg(convertedToTempC);
     // Display Message With @tempF
-   
-    outputTempToC.innerHTML = 'The given temperature in Celsius degrees: ' + fahrenheitToCelsius(tempF) + '!' + '<br><br>' + tempMessage(fahrenheitToCelsius(tempF)) + '<br><br>';
+    outputTempToC.innerHTML = 'Input in °C: ' + tempF + '<br><span>Output in °F: ' + convertedToTempC + '</span><br><br>' + tempMsgC + '<br><br>';
 });
