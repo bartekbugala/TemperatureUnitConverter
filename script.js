@@ -57,13 +57,13 @@ function returnTempMsg(tempC) {
     } else if (tempC >= 10 && tempC < 18) {
         msg = 'You can wear a coat! It is getting warmer!';
     } else if (tempC >= 18 && tempC <= 28) {
-        msg = 'It is definately summer, or you are in your apartament';
+        msg = 'It is warm';
     } else if (tempC > 28 && tempC < 100) {
-        msg = 'I\'s getting hot in here! THE ROOF IS ON FIRE';
+        msg = 'I\'s getting hot!';
     } else if (tempC >= 100 && tempC < 525) {
-        msg = 'Water is boiling or evaporates. You are dead or wear a firefighter suit!';
+        msg = 'Water is boiling or evaporates.';
     } else if (tempC >= 525 && tempC < 5505) {
-        msg = 'Black hole sun won\'t you come!';
+        msg = 'Fire!';
     } else if (tempC >= 5505) {
         msg = 'Most probably you can\'t recieve this message';
     } else(
