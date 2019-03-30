@@ -133,7 +133,7 @@ buttonTempToC.addEventListener('click', function () {
     while (promptTempToC !== null) {
 
         //  Define binding of temperature from prompt after validation
-        let tempF = alertIfNotNumber(returnIfNumber(promptTempToC));
+        let tempF = returnIfNumber(promptTempToC);
 
         //  Define binding of temperature converted to Celsius
         let tempC = returnIfNumber(fahrenheitToCelsius(tempF));
