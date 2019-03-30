@@ -20,6 +20,7 @@ function round(num, decimal = 2) {
 
 // Function to convert Celsius to Fahrenheit (@tempC - in Celsius (number))
 function celsiusToFahrenheit(tempC) {
+    // Alert if wrong input Before conversion
     if (isNaN(tempC)) {
         alertIfNotNumber(tempC);
         return tempC;
@@ -30,6 +31,7 @@ function celsiusToFahrenheit(tempC) {
 
 // Function to convert Fahrenheit to Celsius (@tempF - in Fahrenheit (number))
 function fahrenheitToCelsius(tempF) {
+    // Alert if wrong input Before conversion
     if (isNaN(tempF)) {
         alertIfNotNumber(tempF);
         return tempF;
