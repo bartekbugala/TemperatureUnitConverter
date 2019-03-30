@@ -21,7 +21,7 @@ function round(num, decimal = 2) {
 // Function to convert Celsius to Fahrenheit (@tempC - in Celsius (number))
 function celsiusToFahrenheit(tempC) {
 
-    // Display substitute value 
+    // Validate input if wrong display substitute value  
     tempC = returnIfNumber(tempC);
     
     // Alert if wrong input Before conversion
@@ -37,7 +37,7 @@ function celsiusToFahrenheit(tempC) {
 // Function to convert Fahrenheit to Celsius (@tempF - in Fahrenheit (number))
 function fahrenheitToCelsius(tempF) {
     
-    // Display substitute value 
+    // Validate input if wrong display substitute value 
     tempF = returnIfNumber(tempF);
 
     // Alert if wrong input Before conversion
