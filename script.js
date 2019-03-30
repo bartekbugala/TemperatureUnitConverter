@@ -20,7 +20,7 @@ function round(num, decimal = 2) {
 
 // Function to convert Celsius to Fahrenheit (@tempC - in Celsius (number))
 function celsiusToFahrenheit(tempC) {
-    if(isNaN(tempC)){
+    if (isNaN(tempC)) {
         alertIfNotNumber(tempC);
         return tempC;
     }
@@ -30,7 +30,7 @@ function celsiusToFahrenheit(tempC) {
 
 // Function to convert Fahrenheit to Celsius (@tempF - in Fahrenheit (number))
 function fahrenheitToCelsius(tempF) {
-    if(isNaN(tempF)){
+    if (isNaN(tempF)) {
         alertIfNotNumber(tempF);
         return tempF;
     }
@@ -40,16 +40,12 @@ function fahrenheitToCelsius(tempF) {
 
 // Function to check if number, return number or message (@input, @ value (default value - 'wrong input'))
 function returnIfNumber(input) {
-    console.log("returnIfNumber start function: "+input);
-    if (input==="" || input=== "no input") {
-        console.log("returnIfNumber condition 1: "+input);
+    if (input === "" || input === "no input") {
         return "no input";
-    }
-    else if (isNaN(input) && (input !== "" || input !== "no input")) {
-        console.log("returnIfNumber condition 2: "+input);
+    } else if (isNaN(input) && (input !== "" || input !== "no input")) {
         return "wrong input"
     }
-    console.log("returnIfNumber condition 3: ");
+
     return input;
 };
 
@@ -57,8 +53,7 @@ function returnIfNumber(input) {
 function alertIfNotNumber(input) {
     if (input === "" || input === "no input") {
         alert('No input, please enter a number');
-    }
-    else if (isNaN(input)) {
+    } else if (isNaN(input)) {
         alert('Wrong input, please enter a number.');
     }
     return input;
@@ -100,7 +95,7 @@ buttonTempToF.addEventListener('click', function () {
     promptTempToF = promptTempToF.trim();
 
     // Replace commas with dots
-    promptTempToF = promptTempToF.replace(',','.');
+    promptTempToF = promptTempToF.replace(',', '.');
 
     // Loop waiting for input other than cancel (null)
     while (promptTempToF !== null) {
@@ -132,7 +127,7 @@ buttonTempToC.addEventListener('click', function () {
     promptTempToC = promptTempToC.trim();
 
     // Replace commas with dots
-    promptTempToC = promptTempToC.replace(',','.');
+    promptTempToC = promptTempToC.replace(',', '.');
 
     // Loop waiting for input other than cancel (null)
     while (promptTempToC !== null) {
