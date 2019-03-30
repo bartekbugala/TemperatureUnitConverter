@@ -20,30 +20,48 @@ function round(num, decimal = 2) {
 
 // Function to convert Celsius to Fahrenheit (@tempC - in Celsius (number))
 function celsiusToFahrenheit(tempC) {
+    if(isNaN(tempC)){
+        alertIfNotNumber(tempC);
+        return tempC;
+    }
     let tempF = (tempC * 1.8) + 32;
     return round(tempF);
 };
 
 // Function to convert Fahrenheit to Celsius (@tempF - in Fahrenheit (number))
 function fahrenheitToCelsius(tempF) {
+    if(isNaN(tempF)){
+        alertIfNotNumber(tempF);
+        return tempF;
+    }
     let tempC = (tempF - 32) / 1.8;
     return round(tempC);
 };
 
 // Function to check if number, return number or message (@input, @ value (default value - 'wrong input'))
-function returnIfNumber(input, value = "wrong input") {
-    if (isNaN(input) || input === "" || input == null) {
-        return value;
+function returnIfNumber(input) {
+    console.log("returnIfNumber start function: "+input);
+    if (input==="" || input=== "no input") {
+        console.log("returnIfNumber condition 1: "+input);
+        return "no input";
     }
-    return input
+    else if (isNaN(input) && (input !== "" || input !== "no input")) {
+        console.log("returnIfNumber condition 2: "+input);
+        return "wrong input"
+    }
+    console.log("returnIfNumber condition 3: ");
+    return input;
 };
 
 // Function to display alert if not a number (@input)
 function alertIfNotNumber(input) {
-    if (isNaN(input)) {
+    if (input === "" || input === "no input") {
+        alert('No input, please enter a number');
+    }
+    else if (isNaN(input)) {
         alert('Wrong input, please enter a number.');
     }
-    return input
+    return input;
 };
 
 // Function to Return message according to temperature range in C degrees (@tempC) 
@@ -88,7 +106,7 @@ buttonTempToF.addEventListener('click', function () {
     while (promptTempToF !== null) {
 
         // Define binding of temperature from prompt after validation
-        let tempC = alertIfNotNumber(returnIfNumber(promptTempToF));
+        let tempC = returnIfNumber(promptTempToF);
 
         // Define binding of converted temperature
         let tempF = returnIfNumber(celsiusToFahrenheit(tempC));
