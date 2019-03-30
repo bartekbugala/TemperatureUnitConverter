@@ -80,18 +80,15 @@ function returnTempMsg(tempC) {
     return msg;   
  }
 
-// @tempC - Button listener - conversion to Fahrenheit
+// @tempC - Button listener - convert celsius to fahrenheit
 buttonTempToF.addEventListener('click', function () {
-    // prompt window (second value for IE prevent 'undefined')
     let promptTempToF = window.prompt('Enter Temperature in Celsius degrees','');
-    // check input of prompt window
     let tempC = alertIfNotNumber(returnIfNumber(promptTempToF));
-    // Temperature in F after conversion
-    let convertedToTempF = returnIfNumber(celsiusToFahrenheit(tempC));
+    let tempFConverted = returnIfNumber(celsiusToFahrenheit(tempC));
     // Message according to temperature
-    let tempMsgF = returnTempMsg(tempC);
+    let tempMsg = returnTempMsg(tempC);
     // Display Message With @tempC
-    outputTempToF.innerHTML = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + convertedToTempF + '</span><br><br>' + tempMsgF + '<br><br>';
+    outputTempToF.innerHTML = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + tempFConverted + '</span><br><br>' + tempMsg + '<br><br>';
 });
 
 // @tempF - Button listener - conversion to Celsius
@@ -101,9 +98,9 @@ buttonTempToC.addEventListener('click', function () {
     // check input of prompt window and assign to tempF variable
     let tempF = alertIfNotNumber(returnIfNumber(promptTempToC));
     // Temperature in F after conversion
-    let convertedToTempC = returnIfNumber(fahrenheitToCelsius(tempF));
+    let tempCConverted = returnIfNumber(fahrenheitToCelsius(tempF));
     // Message according to temperature
-    let tempMsgC = returnTempMsg(convertedToTempC);
+    let tempMsg = returnTempMsg(convertedToTempC);
     // Display Message With @tempF
-    outputTempToC.innerHTML = 'Input in °C: ' + tempF + '<br><span>Output in °F: ' + convertedToTempC + '</span><br><br>' + tempMsgC + '<br><br>';
+    outputTempToC.innerHTML = 'Input in °C: ' + tempF + '<br><span>Output in °F: ' + tempCConverted + '</span><br><br>' + tempMsg + '<br><br>';
 });
