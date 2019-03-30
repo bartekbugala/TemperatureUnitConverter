@@ -81,12 +81,18 @@ buttonTempToF.addEventListener('click', function () {
     // Remove whitespaces
     promptTempToF = promptTempToF.trim();
 
+    // Replace commas with dots
+    promptTempToF = promptTempToF.replace(',','.');
+
     // Loop waiting for input other than cancel (null)
-    while (promptTempToF !== null) {      
+    while (promptTempToF !== null) {
+
         // Define binding of temperature from prompt after validation
         let tempC = alertIfNotNumber(returnIfNumber(promptTempToF));
+
         // Define binding of converted temperature
         let tempF = returnIfNumber(celsiusToFahrenheit(tempC));
+
         // Define binding of message according to given temperature
         let tempMsg = returnTempMsg(tempC);
 
@@ -107,12 +113,18 @@ buttonTempToC.addEventListener('click', function () {
     // Remove whitespaces
     promptTempToC = promptTempToC.trim();
 
+    // Replace commas with dots
+    promptTempToC = promptTempToC.replace(',','.');
+
     // Loop waiting for input other than cancel (null)
     while (promptTempToC !== null) {
+
         //  Define binding of temperature from prompt after validation
         let tempF = alertIfNotNumber(returnIfNumber(promptTempToC));
+
         //  Define binding of temperature converted to Celsius
         let tempC = returnIfNumber(fahrenheitToCelsius(tempF));
+
         //  Define binding of message according to given temperature
         let tempMsg = returnTempMsg(tempC);
 
