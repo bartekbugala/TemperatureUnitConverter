@@ -16,17 +16,20 @@ let buttonTempToC = document.getElementById('temp-to-c-button');
 function round(num, decimal = 2) {
     let multiplier = Math.pow(10, decimal);
     return Math.round(num * multiplier) / multiplier;
-}
+};
+
 // Function to convert Celsius to Fahrenheit (@tempC - in Celsius (number))
 function celsiusToFahrenheit(tempC) {
     let tempF = (tempC * 1.8) + 32;
     return round(tempF);
-}
+};
+
 // Function to convert Fahrenheit to Celsius (@tempF - in Fahrenheit (number))
 function fahrenheitToCelsius(tempF) {
     let tempC = (tempF - 32) / 1.8;
     return round(tempC);
-}
+};
+
 // Function to check if number, return number or message (@input, @ value (default value - 'wrong input'))
 function returnIfNumber(input, value = "wrong input") {
     if (isNaN(input) || input === "" || input == null) {
@@ -34,13 +37,15 @@ function returnIfNumber(input, value = "wrong input") {
     }
     return input
 };
+
 // Function to display alert if not a number (@input)
 function alertIfNotNumber(input) {
     if (isNaN(input)) {
         alert('Wrong input, please enter a number.');
     }
     return input
-}
+};
+
 // Function to Return message according to temperature range in C degrees (@tempC) 
 function returnTempMsg(tempC) {
 
@@ -65,16 +70,19 @@ function returnTempMsg(tempC) {
         msg = 'No message.'
     )
     return msg;
-}
+};
 
-// Function to Add button listener - convert Celsius to Fahrenheit (@tempC - prompt input)
+// Add button listener - convert Celsius to Fahrenheit (@tempC - prompt input)
 buttonTempToF.addEventListener('click', function () {
 
-    // Define binding of prompt window with string message
+    // Define binding of prompt window with string message (second parameter IE fallback)
     let promptTempToF = window.prompt('Enter Temperature in Celsius degrees', '');
 
+    // Remove whitespaces
+    promptTempToF = promptTempToF.trim();
+
     // Loop waiting for input other than cancel (null)
-    while (promptTempToF !== null) {
+    while (promptTempToF !== null) {      
         // Define binding of temperature from prompt after validation
         let tempC = alertIfNotNumber(returnIfNumber(promptTempToF));
         // Define binding of converted temperature
@@ -83,31 +91,33 @@ buttonTempToF.addEventListener('click', function () {
         let tempMsg = returnTempMsg(tempC);
 
         // Display final message
-        outputTempToF.innerHTML = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' +
-            tempF + '</span><br><br>' + tempMsg + '<br><br>';
+        outputTempToF.innerHTML = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + tempF + '</span><br><br>' + tempMsg + '<br><br>';
 
         // Break out of loop to end prompt window after input
         break;
     }
 });
 
-// Add button listener - convert Celsius to Fahrenheit (@tempC - prompt input)
+// Add button listener - convert Fahrenheit to Celsius (@tempF - prompt input)
 buttonTempToC.addEventListener('click', function () {
 
-    // Define binding of prompt window with string message
-    let promptTempToC = window.prompt('Enter Temperature in Celsius degrees', '');
+    // Define binding of prompt window with string message (second parameter IE fallback)
+    let promptTempToC = window.prompt('Enter Temperature in Fahrenheit degrees', '');
+
+    // Remove whitespaces
+    promptTempToC = promptTempToC.trim();
 
     // Loop waiting for input other than cancel (null)
     while (promptTempToC !== null) {
         //  Define binding of temperature from prompt after validation
         let tempF = alertIfNotNumber(returnIfNumber(promptTempToC));
-        //  Define binding of temperature converted to Fahrenheit
+        //  Define binding of temperature converted to Celsius
         let tempC = returnIfNumber(fahrenheitToCelsius(tempF));
         //  Define binding of message according to given temperature
         let tempMsg = returnTempMsg(tempC);
 
         // Display final message
-        outputTempToF.innerHTML = 'Input in °C: ' + tempF + '<br><span>Output in °F: ' + tempC + '</span><br><br>' + tempMsg + '<br><br>';
+        outputTempToC.innerHTML = 'Input in °C: ' + tempF + '<br><span>Output in °F: ' + tempC + '</span><br><br>' + tempMsg + '<br><br>';
 
         // Break out of loop to end prompt window after input
         break;
