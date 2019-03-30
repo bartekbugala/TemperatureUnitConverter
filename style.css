@@ -52,6 +52,10 @@ section {
   section h2 {
     margin: 20px auto;
     text-transform: uppercase; }
+    section h2 span {
+      display: block;
+      text-transform: capitalize;
+      font-size: 0.8em; }
   section div button {
     display: inline-block;
     color: #ffffff;

@@ -93,6 +93,11 @@ section {
     h2 {
         margin: 20px auto;
         text-transform: uppercase;
+        span {
+            display: block;
+            text-transform: capitalize;
+            font-size: 0.8em;
+        }
     }
     div {
         button {
