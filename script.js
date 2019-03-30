@@ -20,22 +20,32 @@ function round(num, decimal = 2) {
 
 // Function to convert Celsius to Fahrenheit (@tempC - in Celsius (number))
 function celsiusToFahrenheit(tempC) {
+
+    // Display substitute value 
+    tempC = returnIfNumber(tempC);
+    
     // Alert if wrong input Before conversion
     if (isNaN(tempC)) {
         alertIfNotNumber(tempC);
         return tempC;
     }
+
     let tempF = (tempC * 1.8) + 32;
     return round(tempF);
 };
 
 // Function to convert Fahrenheit to Celsius (@tempF - in Fahrenheit (number))
 function fahrenheitToCelsius(tempF) {
+    
+    // Display substitute value 
+    tempF = returnIfNumber(tempF);
+
     // Alert if wrong input Before conversion
     if (isNaN(tempF)) {
         alertIfNotNumber(tempF);
         return tempF;
     }
+    
     let tempC = (tempF - 32) / 1.8;
     return round(tempC);
 };
@@ -106,7 +116,7 @@ buttonTempToF.addEventListener('click', function () {
         let tempC = returnIfNumber(promptTempToF);
 
         // Define binding of converted temperature
-        let tempF = returnIfNumber(celsiusToFahrenheit(tempC));
+        let tempF = celsiusToFahrenheit(tempC);
 
         // Define binding of message according to given temperature
         let tempMsg = returnTempMsg(tempC);
@@ -138,7 +148,7 @@ buttonTempToC.addEventListener('click', function () {
         let tempF = returnIfNumber(promptTempToC);
 
         //  Define binding of temperature converted to Celsius
-        let tempC = returnIfNumber(fahrenheitToCelsius(tempF));
+        let tempC = fahrenheitToCelsius(tempF);
 
         //  Define binding of message according to given temperature
         let tempMsg = returnTempMsg(tempC);
