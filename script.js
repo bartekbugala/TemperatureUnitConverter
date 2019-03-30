@@ -142,7 +142,7 @@ buttonTempToC.addEventListener('click', function () {
         let tempMsg = returnTempMsg(tempC);
 
         // Display final message
-        outputTempToC.innerHTML = 'Input in °C: ' + tempF + '<br><span>Output in °F: ' + tempC + '</span><br><br>' + tempMsg + '<br><br>';
+        outputTempToC.innerHTML = 'Input in °F: ' + tempF + '<br><span>Output in °C: ' + tempC + '</span><br><br>' + tempMsg + '<br><br>';
 
         // Break out of loop to end prompt window after input
         break;
