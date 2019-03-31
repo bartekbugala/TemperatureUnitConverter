@@ -63,17 +63,8 @@ function returnNanIfEmptyOrNaN(input) {
     return input;
 };
 
-// "before" = insert before / "after" = insert after (default)
-function displayInHtmlElement(domElement,textToDisplay,newLineArg = 'after'){
-    let oldLineBefore = '';
-    let oldLineAfter = '';
-    if (newLineArg === 'after') {
-        oldLineBefore = domElement.innerHTML;
-    }
-    else if (newLineArg === 'before') {
-        oldLineAfter = domElement.innerHTML;
-    }    
-    domElement.innerHTML = oldLineBefore + '<br><hr>'+ textToDisplay +'<br><hr>' + oldLineAfter;
+function displayInHtmlElement(domElement,textToDisplay){
+    domElement.innerHTML = domElement.innerHTML + '<br><hr>'+ textToDisplay +'<br><hr>';
 }
 
 buttonTempToF.addEventListener('click', function () {
@@ -98,7 +89,7 @@ buttonTempToF.addEventListener('click', function () {
     let tempMsg = returnTempMsg(tempC);
     let finalMsg = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + tempF + '</span><br><br>' + tempMsg;
 
-    displayInHtmlElement(outputTempToF,finalMsg,'after')
+    displayInHtmlElement(outputTempToF,finalMsg)
 });
 
 
@@ -126,5 +117,5 @@ buttonTempToC.addEventListener('click', function () {
 
     let finalMsg = 'Input in °F: ' + tempF + '<br><span>Output in °C:' + tempC + '</span><br><br>' + tempMsg;
 
-    displayInHtmlElement(outputTempToC,finalMsg,'after');
+    displayInHtmlElement(outputTempToC,finalMsg);
 });
