@@ -1,77 +1,36 @@
 'use strict';
 
-// Define bindings as divs from DOM by Id
 let outputTempToF = document.getElementById('temp-to-f-output');
 let outputTempToC = document.getElementById('temp-to-c-output');
 
-// Assign string contents to divs
 outputTempToF.innerHTML = 'Click the button! If you want to convert °C to °F!' + '<br><br>';
 outputTempToC.innerHTML = 'Click the button! If you want to convert °F to °C!' + '<br><br>';
 
-// Define bindings of buttons from DOM by Id
 let buttonTempToF = document.getElementById('temp-to-f-button');
 let buttonTempToC = document.getElementById('temp-to-c-button');
 
-// Function to round float number (@num, @decimal places (if not set defaul is 2)
+// If second param decimal not set default is 2 
 function round(num, decimal = 2) {
     let multiplier = Math.pow(10, decimal);
     return Math.round(num * multiplier) / multiplier;
 };
 
-// Function to convert Celsius to Fahrenheit (@tempC - in Celsius (number))
 function celsiusToFahrenheit(tempC) {
-
-    // Validate input if wrong display substitute value  
-    tempC = returnIfNumber(tempC);
-    
-    // Alert if wrong input Before conversion
-    if (isNaN(tempC)) {
-        alertIfNotNumber(tempC);
-        return tempC;
-    }
-
     let tempF = (tempC * 1.8) + 32;
     return round(tempF);
 };
 
-// Function to convert Fahrenheit to Celsius (@tempF - in Fahrenheit (number))
 function fahrenheitToCelsius(tempF) {
-    
-    // Validate input if wrong display substitute value 
-    tempF = returnIfNumber(tempF);
-
-    // Alert if wrong input Before conversion
-    if (isNaN(tempF)) {
-        alertIfNotNumber(tempF);
-        return tempF;
-    }
-    
     let tempC = (tempF - 32) / 1.8;
     return round(tempC);
 };
 
-// Function to check if number, return number or message (@input, @ value (default value - 'wrong input'))
-function returnIfNumber(input) {
-    if (input === "" || input === "no input") {
-        return "no input";
-    } else if (isNaN(input) && (input !== "" || input !== "no input")) {
-        return "wrong input"
-    }
-
+function trimSpaceReplaceCommaWithDot(input) {
+    input = input.replace(',', '.');
+    input = input.trim();
     return input;
-};
+}
 
-// Function to display alert if not a number (@input)
-function alertIfNotNumber(input) {
-    if (input === "" || input === "no input") {
-        alert('No input, please enter a number');
-    } else if (isNaN(input)) {
-        alert('Wrong input, please enter a number.');
-    }
-    return input;
-};
-
-// Function to Return message according to temperature range in C degrees (@tempC) 
 function returnTempMsg(tempC) {
 
     let msg;
@@ -97,66 +56,59 @@ function returnTempMsg(tempC) {
     return msg;
 };
 
-// Add button listener - convert Celsius to Fahrenheit (@tempC - prompt input)
+function returnNanIfEmptyOrNaN(input) {
+    if (isNaN(input) || input === "") {
+        return NaN;
+    }
+    return input;
+};
+
 buttonTempToF.addEventListener('click', function () {
 
-    // Define binding of prompt window with string message (second parameter IE fallback)
-    let promptTempToF = window.prompt('Enter Temperature in Celsius degrees', '');
+    // (second parameter empty string '' is IE fallback)
+    let tempC = window.prompt('Enter Temperature in Celsius degrees', '');
+    
+    tempC = trimSpaceReplaceCommaWithDot(tempC);
 
-    // Remove whitespaces
-    promptTempToF = promptTempToF.trim();
-
-    // Replace commas with dots
-    promptTempToF = promptTempToF.replace(',', '.');
-
-    // Loop waiting for input other than cancel (null)
-    while (promptTempToF !== null) {
-
-        // Define binding of temperature from prompt after validation
-        let tempC = returnIfNumber(promptTempToF);
-
-        // Define binding of converted temperature
-        let tempF = celsiusToFahrenheit(tempC);
-
-        // Define binding of message according to given temperature
-        let tempMsg = returnTempMsg(tempC);
-
-        // Display final message
-        outputTempToF.innerHTML = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + tempF + '</span><br><br>' + tempMsg + '<br><br>';
-
-        // Break out of loop to end prompt window after input
-        break;
+    if (tempC === null) {
+        return;
     }
+
+    tempC = returnNanIfEmptyOrNaN(tempC);
+    
+    if (isNaN(tempC)) {
+        alert('Please enter a number');
+        return;
+    }
+
+    let tempF = celsiusToFahrenheit(tempC);
+    let tempMsg = returnTempMsg(tempC);
+
+    outputTempToF.innerHTML = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + tempF + '</span><br><br>' + tempMsg + '<br><br>';
 });
 
-// Add button listener - convert Fahrenheit to Celsius (@tempF - prompt input)
+
+
 buttonTempToC.addEventListener('click', function () {
 
-    // Define binding of prompt window with string message (second parameter IE fallback)
-    let promptTempToC = window.prompt('Enter Temperature in Fahrenheit degrees', '');
-
-    // Remove whitespaces
-    promptTempToC = promptTempToC.trim();
-
-    // Replace commas with dots
-    promptTempToC = promptTempToC.replace(',', '.');
-
-    // Loop waiting for input other than cancel (null)
-    while (promptTempToC !== null) {
-
-        //  Define binding of temperature from prompt after validation
-        let tempF = returnIfNumber(promptTempToC);
-
-        //  Define binding of temperature converted to Celsius
-        let tempC = fahrenheitToCelsius(tempF);
-
-        //  Define binding of message according to given temperature
-        let tempMsg = returnTempMsg(tempC);
-
-        // Display final message
-        outputTempToC.innerHTML = 'Input in °F: ' + tempF + '<br><span>Output in °C: ' + tempC + '</span><br><br>' + tempMsg + '<br><br>';
-
-        // Break out of loop to end prompt window after input
-        break;
+    // (second parameter empty string '' is IE fallback)
+    let tempF = window.prompt('Enter Temperature in Fahrenheit degrees', '');
+    
+    tempF = trimSpaceReplaceCommaWithDot(tempF);
+    
+    if (tempF === null) {
+        return;
     }
+
+    tempF = returnNanIfEmptyOrNaN(tempF);
+
+    if (isNaN(tempF)) {
+        alert('Please enter a number');
+        return;
+    }
+
+    let tempC = fahrenheitToCelsius(tempF);
+    let tempMsg = returnTempMsg(tempC);
+
+    outputTempToC.innerHTML = 'Input in °F: ' + tempF + '<br><span>Output in °C:' + tempC + '</span><br><br>' + tempMsg + '<br><br>';
 });
