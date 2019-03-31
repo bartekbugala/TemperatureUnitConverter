@@ -3,8 +3,8 @@
 let outputTempToF = document.getElementById('temp-to-f-output');
 let outputTempToC = document.getElementById('temp-to-c-output');
 
-outputTempToF.innerHTML = 'Click the button! If you want to convert °C to °F!' + '<br><br>';
-outputTempToC.innerHTML = 'Click the button! If you want to convert °F to °C!' + '<br><br>';
+outputTempToF.innerHTML = 'Click the button! to convert °C to °F!' + '<br><br>';
+outputTempToC.innerHTML = 'Click the button! to convert °F to °C!' + '<br><br>';
 
 let buttonTempToF = document.getElementById('temp-to-f-button');
 let buttonTempToC = document.getElementById('temp-to-c-button');
@@ -57,11 +57,24 @@ function returnTempMsg(tempC) {
 };
 
 function returnNanIfEmptyOrNaN(input) {
-    if (isNaN(input) || input === "") {
+    if (isNaN(input) || input === '') {
         return NaN;
     }
     return input;
 };
+
+// "before" = insert before / "after" = insert after (default)
+function displayInHtmlElement(domElement,textToDisplay,newLineArg = 'after'){
+    let oldLineBefore = '';
+    let oldLineAfter = '';
+    if (newLineArg === 'after') {
+        oldLineBefore = domElement.innerHTML;
+    }
+    else if (newLineArg === 'before') {
+        oldLineAfter = domElement.innerHTML;
+    }    
+    domElement.innerHTML = oldLineBefore + '<br><hr>'+ textToDisplay +'<br><hr>' + oldLineAfter;
+}
 
 buttonTempToF.addEventListener('click', function () {
 
@@ -83,8 +96,9 @@ buttonTempToF.addEventListener('click', function () {
 
     let tempF = celsiusToFahrenheit(tempC);
     let tempMsg = returnTempMsg(tempC);
+    let finalMsg = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + tempF + '</span><br><br>' + tempMsg;
 
-    outputTempToF.innerHTML = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + tempF + '</span><br><br>' + tempMsg + '<br><br>';
+    displayInHtmlElement(outputTempToF,finalMsg,'after')
 });
 
 
@@ -110,5 +124,7 @@ buttonTempToC.addEventListener('click', function () {
     let tempC = fahrenheitToCelsius(tempF);
     let tempMsg = returnTempMsg(tempC);
 
-    outputTempToC.innerHTML = 'Input in °F: ' + tempF + '<br><span>Output in °C:' + tempC + '</span><br><br>' + tempMsg + '<br><br>';
+    let finalMsg = 'Input in °F: ' + tempF + '<br><span>Output in °C:' + tempC + '</span><br><br>' + tempMsg;
+
+    displayInHtmlElement(outputTempToC,finalMsg,'after');
 });

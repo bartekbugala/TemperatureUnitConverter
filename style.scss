@@ -13,6 +13,7 @@ $color4: #5b62a5;
 
 // Simple Grid
 .row {
+
     &::before,
     &::after {
         content: "";
@@ -89,16 +90,19 @@ section {
     margin-top: 20px;
     border: 6px solid orange;
     border-radius: 20px;
-    padding: 10px;
+    padding: 10px 10px 30px 10px;
+
     h2 {
         margin: 20px auto;
         text-transform: uppercase;
+
         span {
             display: block;
             text-transform: capitalize;
             font-size: 0.8em;
         }
     }
+
     div {
         button {
             display: inline-block;
@@ -116,30 +120,39 @@ section {
             outline: 0 !important;
             text-decoration: none;
             touch-action: manipulation;
-            user-select: none;    
+            user-select: none;
+        }
+
+        #temp-to-f-button {
+            background-color: $color2;
+            border: 2px solid $color2;
+
+            &:hover,
+            &:active {
+                color: $color2;
+                background-color: $color3;
             }
-            #temp-to-f-button {
-                background-color: $color2;
-                border: 2px solid $color2;
-                &:hover,
-                &:active {
-                    color: $color2;
-                    background-color: $color3;
-                }
-            }           
-            #temp-to-c-button {
-                text-align: center;
-                background-color: $color4;
-                border: 2px solid $color4;
-                &:hover,
-                &:active {
-                    color: $color4;
-                    background-color: $color3;
-                }
+        }
+
+        #temp-to-c-button {
+            text-align: center;
+            background-color: $color4;
+            border: 2px solid $color4;
+
+            &:hover,
+            &:active {
+                color: $color4;
+                background-color: $color3;
             }
-            [id$="output"] {
-                span {
+        }
+
+        [id$="output"] {
+            span {
                 color: red;
+            }
+            hr {
+                width: 80%;
+                margin: 0 auto;
             }
         }
     }

@@ -48,7 +48,7 @@ section {
   margin-top: 20px;
   border: 6px solid orange;
   border-radius: 20px;
-  padding: 10px; }
+  padding: 10px 10px 30px 10px; }
   section h2 {
     margin: 20px auto;
     text-transform: uppercase; }
@@ -88,6 +88,9 @@ section {
       background-color: #ffffff; }
   section div [id$="output"] span {
     color: red; }
+  section div [id$="output"] hr {
+    width: 80%;
+    margin: 0 auto; }
 
 /*# sourceMappingURL=style.css.map */
 
