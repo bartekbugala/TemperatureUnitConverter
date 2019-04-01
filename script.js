@@ -71,8 +71,6 @@ buttonTempToF.addEventListener('click', function () {
 
     // (second parameter empty string '' is IE fallback)
     let tempC = window.prompt('Enter Temperature in Celsius degrees', '');
-    
-    tempC = trimSpaceReplaceCommaWithDot(tempC);
 
     if (tempC === null) {
         return;
@@ -87,6 +85,7 @@ buttonTempToF.addEventListener('click', function () {
 
     let tempF = celsiusToFahrenheit(tempC);
     let tempMsg = returnTempMsg(tempC);
+    
     let finalMsg = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + tempF + '</span><br><br>' + tempMsg;
 
     displayInHtmlElement(outputTempToF,finalMsg)
