@@ -56,13 +56,6 @@ function returnTempMsg(tempC) {
     return msg;
 };
 
-function returnNanIfEmptyOrNaN(input) {
-    if (isNaN(input) || input === '') {
-        return NaN;
-    }
-    return input;
-};
-
 function displayInHtmlElement(domElement,textToDisplay){
     domElement.innerHTML = domElement.innerHTML + '<br><hr>'+ textToDisplay +'<br><hr>';
 }
@@ -78,20 +71,18 @@ buttonTempToF.addEventListener('click', function () {
 
     tempC = trimSpaceReplaceCommaWithDot(tempC);
 
-    if (isNaN(tempC) || tempC === "") {
+    if (isNaN(tempC) || tempC === '') {
         alert('Please enter a number');
         return;
     }
 
     let tempF = celsiusToFahrenheit(tempC);
     let tempMsg = returnTempMsg(tempC);
-    
+
     let finalMsg = 'Input in °C: ' + tempC + '<br><span>Output in °F: ' + tempF + '</span><br><br>' + tempMsg;
 
     displayInHtmlElement(outputTempToF,finalMsg)
 });
-
-
 
 buttonTempToC.addEventListener('click', function () {
 
@@ -104,7 +95,7 @@ buttonTempToC.addEventListener('click', function () {
 
     tempF = trimSpaceReplaceCommaWithDot(tempF);
 
-    if (isNaN(tempF) || tempF === "") {
+    if (isNaN(tempF) || tempF === '') {
         alert('Please enter a number');
         return;
     }
