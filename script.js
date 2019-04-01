@@ -78,9 +78,9 @@ buttonTempToF.addEventListener('click', function () {
         return;
     }
 
-    tempC = returnNanIfEmptyOrNaN(tempC);
-    
-    if (isNaN(tempC)) {
+    tempC = trimSpaceReplaceCommaWithDot(tempC);
+
+    if (isNaN(tempC) || tempC === "") {
         alert('Please enter a number');
         return;
     }
@@ -99,15 +99,13 @@ buttonTempToC.addEventListener('click', function () {
     // (second parameter empty string '' is IE fallback)
     let tempF = window.prompt('Enter Temperature in Fahrenheit degrees', '');
     
-    tempF = trimSpaceReplaceCommaWithDot(tempF);
-    
     if (tempF === null) {
         return;
     }
 
-    tempF = returnNanIfEmptyOrNaN(tempF);
+    tempF = trimSpaceReplaceCommaWithDot(tempF);
 
-    if (isNaN(tempF)) {
+    if (isNaN(tempF) || tempF === "") {
         alert('Please enter a number');
         return;
     }
