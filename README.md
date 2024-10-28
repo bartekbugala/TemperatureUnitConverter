@@ -1,4 +1,4 @@
-# Kodilla-8.3.1
+# Farenheit - Celsius converter
 Fahrtenheit to Celsius Converter + Messages: https://bartekbugala.github.io/TemperatureUnitConverter/
 
 Simple Implementation of a Fahrenheit to Celsius and Celsius to Fahrenheit Calculator.
